@@ -1,0 +1,9 @@
+{% if bands %}
+    <ul>
+    {% for band in bands %}
+        <li><a href="{% url 'bands_show' band.id %}">{{ band.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No bands available.</p>
+{% endif %}
