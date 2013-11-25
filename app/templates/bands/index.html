@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+
+{% block content %}
 {% if bands %}
     <ul>
     {% for band in bands %}
@@ -7,3 +10,4 @@
 {% else %}
     <p>No bands available.</p>
 {% endif %}
+{% endblock %}
