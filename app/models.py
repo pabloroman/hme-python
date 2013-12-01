@@ -1,7 +1,8 @@
 from django.db import models
 from django.db.models.fields import PositiveIntegerField
-
-import hashlib
+from django.utils.http import urlquote_plus
+from django.utils.encoding import iri_to_uri
+import hashlib, urllib
 
 class PositiveBigIntegerField(PositiveIntegerField):
     """Represents MySQL's unsigned BIGINT data type (works with MySQL only!)"""
@@ -39,6 +40,7 @@ class Album(models.Model):
     year = models.CharField(max_length=200)
     label = models.CharField(max_length=200)
     cover = models.CharField(max_length=200)
+    score = models.DecimalField(max_digits=10, decimal_places=3)
     
     def __unicode__(self):  # Python 3: def __str__(self):
         return self.name
@@ -46,7 +48,10 @@ class Album(models.Model):
     def cached_cover(self):
         hash = hashlib.sha1(str(self.id)).hexdigest()
         return '/static/images/'+hash[0]+'/'+hash[1]+'/'+hash+'.jpg'
-
+        
+    def encoded_query(self):
+        return urlquote_plus(self.band.name+' '+self.name).replace('+','%20')
+    
 
 class Review(models.Model):
     id = PositiveBigIntegerField(primary_key=True)

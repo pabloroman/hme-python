@@ -7,8 +7,10 @@ from app.models import Album, Band, Review
 def index(request):
 
 # SELECT `app_album`.*, AVG(`score`) as `avg` FROM `app_album` INNER JOIN `app_review` ON `app_album`.`id` = `app_review`.`album_id` WHERE `app_review`.`date` > "2013-10-01" AND `app_album`.`year` = "2013" GROUP BY `album_id` ORDER BY `avg`
-
-    album_list = Album.objects.filter(review__date__gte='2013-10-01').filter(year__gte='2013').annotate(average_score=Avg('review__score')).order_by('-average_score')[:24]
+    
+    #     album_list = Album.objects.filter(review__date__gte='2013-10-01').filter(year__gte='2013').annotate(average_score=Avg('review__score')).order_by
+    
+    album_list = Album.objects.filter(year__gte='2013').order_by('-score')[:24]
     return render(request, 'home.html', { 'albums': album_list })
 
 def band_search(request):
