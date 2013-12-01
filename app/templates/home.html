@@ -1,7 +1,49 @@
 {% extends "base.html" %}
 
-{% block content %}
-<h1>Homepage</h1>
+{% block banner %}
+<section class="hero">
+<div class="wrapper">
+    <form class="search-form">
+        <label for="search-field">What do you want to hear?</label>
+        <input type="text" id="search-field" name="q">
+        <button><i class="fi-magnifying-glass"></i><span class="">Search</span></button>
+       
+    </form>
+    <div class="cloudtag">
+        <a href="">Black metal</a>
+        <a href="">Death metal</a>
+        <a href="">Thrash metal</a>
+        <a href="">Heavy metal</a>
+        <a href="">Doom metal</a>
+    </div>
+</div>
+</section>
 
-<a href="{% url 'bands_index' %}">Band list</a>
+{% endblock %}
+
+{% block content %}
+
+<h2>Best new albums</h2>
+
+{% if albums %}
+
+    <ul class="album-list">
+    {% for album in albums %}
+        <li class="column third">
+            <div class="media album-item">
+                <figure>
+					<img src="{{ album.cached_cover }}" width="300" height="300" alt="{{ album.name }}">
+					<figcaption>
+                        <h3><a href="{% url 'albums_show' album.id %}">{{ album.name }}</a></h3>
+                        <div><a href="{% url 'bands_show' album.band.id %}">{{ album.band.name }}</a></div>
+						
+					</figcaption>
+				</figure>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+    
+{% endif %}
+
 {% endblock %}

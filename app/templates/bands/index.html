@@ -7,7 +7,28 @@
         <li><a href="{% url 'bands_show' band.id %}">{{ band.name }}</a></li>
     {% endfor %}
     </ul>
+    
+    <hr>
+    
+    <div class="pagination">
+	    <span class="step-links">
+	        {% if bands.has_previous %}
+	            <a href="?page={{ bands.previous_page_number }}">Previous</a>
+	        {% endif %}
+	
+	        <span class="current">
+	            Page {{ bands.number }} of {{ bands.paginator.num_pages }}.
+	        </span>
+	
+	        {% if bands.has_next %}
+	            <a href="?page={{ bands.next_page_number }}">Next</a>
+	        {% endif %}
+	    </span>
+	</div>
+
 {% else %}
     <p>No bands available.</p>
 {% endif %}
 {% endblock %}
+
+
