@@ -50,7 +50,7 @@ class Album(models.Model):
         return '/static/images/'+hash[0]+'/'+hash[1]+'/'+hash+'.jpg'
         
     def encoded_query(self):
-        return urlquote_plus(self.band.name+' '+self.name).replace('+','%20')
+        return self.band.name+' '+self.name
     
 
 class Review(models.Model):

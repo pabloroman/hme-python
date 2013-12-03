@@ -37,7 +37,7 @@
                         <h3><a href="{% url 'albums_show' album.id %}">{{ album.name }}</a></h3>
                         <div><a href="{% url 'bands_show' album.band.id %}">{{ album.band.name }}</a></div>
 						<a href="http://www.metal-archives.com/albums/_/_/{{ album.id }}" target="_blank">Metal archives</a> /
-						<a href='spotify:search:"{{ album.encoded_query }}"'>Spotify</a>
+						<a href='spotify:search:{{ album.encoded_query|urlencode }}'>Spotify</a>
 					</figcaption>
 				</figure>
             </div>
