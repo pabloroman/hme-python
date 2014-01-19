@@ -45,4 +45,6 @@ def genre_index(request):
 def genre_show(request, genre_id):
     return render(request, 'genres/show.html')
 
-
+def years_show(request, year_start, year_end):
+    album_list = Album.objects.filter(year__gte=year_start).filter(year__lt=year_end).order_by('-score')[:60]
+    return render(request,  'home.html', {'albums': album_list })

@@ -10,11 +10,11 @@
        
     </form>
     <div class="cloudtag">
-        <a href="">Black metal</a>
-        <a href="">Death metal</a>
-        <a href="">Thrash metal</a>
-        <a href="">Heavy metal</a>
-        <a href="">Doom metal</a>
+        <a href="{% url 'years_show' year_start=1970 year_end=1980 %}">70's</a>
+        <a href="{% url 'years_show' year_start=1980 year_end=1990 %}">80's</a>
+        <a href="{% url 'years_show' year_start=1990 year_end=2000 %}">90's</a>
+        <a href="{% url 'years_show' year_start=2000 year_end=2010 %}">00's</a>
+        <a href="{% url 'years_show' year_start=2010 year_end=2020 %}">10's</a>
     </div>
 </div>
 </section>

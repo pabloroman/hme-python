@@ -11,4 +11,6 @@ urlpatterns = patterns('',
 	url(r'^genres/(?P<genre_id>\d+)/$', views.genre_show, name='genres_show'),
     url(r'^genres/$', views.genre_index, name='genres_index'),
     url(r'^search/$', views.band_search, name='search'),
+    
+    url(r'^years/(?P<year_start>\d+)/(?P<year_end>\d+)/$', views.years_show, name='years_show'),
 )
